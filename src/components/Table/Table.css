@@ -1,0 +1,32 @@
+/* src/components/Table/Table.css */
+
+.table-container {
+  margin-top: 60px; /* Ensure it is below the header */
+  margin-left: 100px;
+  padding: 20px;
+  width: calc(100% - 220px); /* Adjust based on padding and navbar width */
+  height: calc(
+    100vh - 60px - 20px
+  ); /* Adjust height to fit the remaining viewport space */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.table-container th {
+  background-color: #f4f4f4;
+}
+
+.table-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

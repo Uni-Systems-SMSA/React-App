@@ -1,0 +1,33 @@
+/* Navbar.css */
+.navbar {
+  position: fixed;
+  top: 85px; /* Adjust to be directly under the header */
+  left: 0;
+  bottom: 0;
+  width: 200px; /* Adjust width as needed */
+  background-color: #024950;
+  padding: 20px 10px; /* Padding adjusted for better spacing */
+  z-index: 900; /* Ensure it is above other content but below header */
+  overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar ul li {
+  margin-bottom: 10px;
+}
+
+.navbar ul li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar ul li a:hover {
+  text-decoration: underline;
+}

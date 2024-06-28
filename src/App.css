@@ -1,0 +1,18 @@
+/* App.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  margin-top: 85px; /* Adjust based on your header height */
+  margin-left: 200px; /* Adjust based on your navbar width */
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto; /* Allows scrolling if content overflows */
+  width: calc(100% - 260px); /* Adjust based on padding and navbar width */
+  height: calc(
+    100% - 100px - 20px
+  ); /* Ensure it takes the remaining height minus bottom margin */
+}
