@@ -3,7 +3,7 @@ import { axiosLocalhost } from "../../axios/axiosInstances";
 import { LOCALHOST_GET_EVENTS_URL } from "../../axios/constants";
 import "./Table.css";
 
-const TableTest = () => {
+const TableInternal = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -60,4 +60,4 @@ const TableTest = () => {
   );
 };
 
-export default TableTest;
+export default TableInternal;

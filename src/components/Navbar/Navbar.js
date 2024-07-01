@@ -1,8 +1,7 @@
-// Navbar.js
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import { ROUTES } from "../../config/routes";
 
 const Navbar = () => {
   const location = useLocation();
@@ -19,10 +18,10 @@ const Navbar = () => {
           <h2>Cicicom</h2>
           <ul>
             <li>
-              <Link to="/table">Table</Link>
+              <Link to={ROUTES.CICICOM.TABLE}>Table</Link>
             </li>
             <li>
-              <Link to="/map">Map</Link>
+              <Link to={ROUTES.CICICOM.MAP}>Map</Link>
             </li>
           </ul>
         </li>
@@ -30,10 +29,10 @@ const Navbar = () => {
           <h2>Internal</h2>
           <ul>
             <li>
-              <Link to="/table-test">TableTest</Link>
+              <Link to={ROUTES.INTERNAL.TABLE}>Table</Link>
             </li>
             <li>
-              <Link to="/form">Form</Link>
+              <Link to={ROUTES.INTERNAL.FORM}>Form</Link>
             </li>
           </ul>
         </li>

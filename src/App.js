@@ -6,7 +6,7 @@ import Table from "./components/Table/Table";
 import MapWithData from "./components/Map/MapWithData";
 import Header from "./components/Header/Header";
 import "./App.css";
-import TableTest from "./components/Table/TableTest";
+import TableInternal from "./components/Table/TableInternal";
 import Form from "./components/Form/Form";
 
 const App = () => {
@@ -18,10 +18,10 @@ const App = () => {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/table" element={<Table />} />
-            <Route path="/table-test" element={<TableTest />} />
-            <Route path="/map" element={<MapWithData />} />
-            <Route path="/form" element={<Form />} />
+            <Route path="/cicicom/table" element={<Table />} />
+            <Route path="/internal/table" element={<TableInternal />} />
+            <Route path="/cicicom/map" element={<MapWithData />} />
+            <Route path="/internal/form" element={<Form />} />
           </Routes>
         </div>
       </div>
