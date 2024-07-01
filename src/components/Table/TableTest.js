@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosLocalhost } from "../../axios/axiosInstances";
-import { LOCALHOST_EVENTS_URL } from "../../axios/constants";
+import { LOCALHOST_GET_EVENTS_URL } from "../../axios/constants";
 import axios from "axios";
 import "./Table.css";
 
@@ -13,7 +13,7 @@ const TableTest = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosLocalhost.get(LOCALHOST_EVENTS_URL);
+        const response = await axiosLocalhost.get(LOCALHOST_GET_EVENTS_URL);
         setEvents(response.data);
       } catch (error) {
         setError(error);

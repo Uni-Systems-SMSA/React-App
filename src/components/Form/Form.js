@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { axiosCicicom } from "../../axios/axiosInstances";
 import "./Form.css";
+import { LOCALHOST_POST_EVENT_URL } from "../../axios/constants";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -27,10 +29,12 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:8080/event/";
 
     try {
-      const response = await axios.post(url, formData);
+      const response = await axiosCicicom.post(
+        LOCALHOST_POST_EVENT_URL,
+        formData
+      );
       console.log("POST request successful:", response.data);
 
       setFormData({
