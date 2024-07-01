@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { axiosCicicom } from "../../axios/axiosInstances";
+import { axiosCicicom, axiosLocalhost } from "../../axios/axiosInstances";
 import "./Form.css";
 import { LOCALHOST_POST_EVENT_URL } from "../../axios/constants";
 
@@ -31,7 +31,7 @@ const Form = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosCicicom.post(
+      const response = await axiosLocalhost.post(
         LOCALHOST_POST_EVENT_URL,
         formData
       );
