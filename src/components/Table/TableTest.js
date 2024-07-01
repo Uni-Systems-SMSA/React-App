@@ -53,7 +53,7 @@ const TableTest = () => {
   }
 
   return (
-    <div className="table-test">
+    <div className="table-container">
       <h2>Test Table</h2>
       {/* <button onClick={handlePostRequest}>Simulate POST Request</button> */}
       <table>
