@@ -2,8 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { axiosCicicom } from "../../axios/axiosInstances";
 import ParkingSpot from "../Parking/ParkingSpot";
-import "./Table.css"; // Import the CSS for the table
+import {
+  CICICOM_LOGIN_URL,
+  CICICOM_PARKING_SENSORS_URL,
+} from "../../axios/constants";
+import "./Table.css";
 
 const Table = () => {
   const [data, setData] = useState([]);
@@ -14,14 +19,9 @@ const Table = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const response = await axios.post(
-          "http://dev.smartgridnet.com/SmartGridPortalDev/API/Login/acquirenewtoken/CicicomDemo",
-          "CicicomDemo123!@#",
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+        const response = await axiosCicicom.post(
+          CICICOM_LOGIN_URL,
+          "CicicomDemo123!@#"
         );
         if (response.data.Success) {
           setAuthToken(response.data.Result.TokenValue);
@@ -40,15 +40,11 @@ const Table = () => {
     if (authToken) {
       const fetchData = async () => {
         try {
-          const response = await axios.get(
-            "http://dev.smartgridnet.com/smartGridPortalDev/api/CitizentsΒΟ/GetAllParkingSensors",
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `CicicomOath ${authToken}`,
-              },
-            }
-          );
+          const response = await axiosCicicom.get(CICICOM_PARKING_SENSORS_URL, {
+            headers: {
+              Authorization: `CicicomOath ${authToken}`,
+            },
+          });
           setData(response.data.Result);
         } catch (error) {
           setError(error);
