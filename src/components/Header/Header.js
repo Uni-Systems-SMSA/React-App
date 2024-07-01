@@ -3,6 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import logo_unisystems from "../../assets/logo_unisystems.png";
 
 const Header = () => {
   return (
@@ -10,7 +11,10 @@ const Header = () => {
       <div className="header-container">
         <div className="header-left">
           <div className="logo">
-            <h1>App Logo</h1>
+            {/* <h1>App Logo</h1> */}
+            <Link to="/" className="logo-link">
+              <img src={logo_unisystems} alt="App Logo" />
+            </Link>
           </div>
         </div>
         <nav className="header-nav">

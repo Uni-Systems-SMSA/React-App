@@ -19,10 +19,9 @@
   padding: 0 20px; /* Adjust padding as needed */
 }
 
-.logo {
-  flex: 1;
+.logo img {
+  max-height: 70px; /* Adjust the height of your logo as needed */
 }
-
 .header-nav ul {
   list-style-type: none;
   margin: 0;
