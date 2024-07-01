@@ -10,7 +10,7 @@ const Header = () => {
       <div className="header-container">
         <div className="header-left">
           <div className="logo">
-            <h1>My App Logo</h1>
+            <h1>App Logo</h1>
           </div>
         </div>
         <nav className="header-nav">
