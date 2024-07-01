@@ -6,6 +6,8 @@ import { axiosCicicom } from "../../axios/axiosInstances";
 import ParkingSpot from "../Parking/ParkingSpot";
 import {
   CICICOM_LOGIN_URL,
+  CICICOM_LOGIN_TOKEN,
+  CICICOM_OATH,
   CICICOM_PARKING_SENSORS_URL,
 } from "../../axios/constants";
 import "./Table.css";
@@ -21,7 +23,7 @@ const Table = () => {
       try {
         const response = await axiosCicicom.post(
           CICICOM_LOGIN_URL,
-          "CicicomDemo123!@#"
+          CICICOM_LOGIN_TOKEN
         );
         if (response.data.Success) {
           setAuthToken(response.data.Result.TokenValue);
@@ -42,7 +44,7 @@ const Table = () => {
         try {
           const response = await axiosCicicom.get(CICICOM_PARKING_SENSORS_URL, {
             headers: {
-              Authorization: `CicicomOath ${authToken}`,
+              Authorization: `${CICICOM_OATH} ${authToken}`,
             },
           });
           setData(response.data.Result);

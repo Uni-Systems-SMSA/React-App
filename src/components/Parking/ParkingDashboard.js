@@ -11,7 +11,6 @@ const ParkingDashboard = () => {
   useEffect(() => {
     const fetchParkingData = async () => {
       try {
-        // Step 1: Acquire the authorization token
         const tokenResponse = await axios.post(
           "http://dev.smartgridnet.com/SmartGridPortalDev/API/Login/acquirenewtoken/CicicomDemo",
           "CicicomDemo123!@#",
@@ -22,19 +21,16 @@ const ParkingDashboard = () => {
           }
         );
 
-        console.log("Token Response:", tokenResponse); // Log the response object
+        console.log("Token Response:", tokenResponse);
 
-        // Extract the token value from the response
         const authToken = tokenResponse.data.Result.TokenValue;
 
-        // Step 2: Fetch parking sensor data using the authorization token
         const parkingDataResponse = await axios.get(
           "http://dev.smartgridnet.com/smartGridPortalDev/api/CitizentsΒΟ/GetAllParkingSensors",
           {
             headers: {
               "Content-Type": "application/json",
               Authorization: `CicicomOath ${authToken}`,
-              //   Authorization: `CicicomOath MQhZuATZt0aAsqQtSvQHmQ==`,
             },
           }
         );

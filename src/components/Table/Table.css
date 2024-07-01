@@ -1,14 +1,12 @@
 /* src/components/Table/Table.css */
 
 .table-container {
-  margin-top: 60px; /* Ensure it is below the header */
+  margin-top: 60px;
   margin-left: 100px;
   padding: 20px;
-  width: calc(100% - 220px); /* Adjust based on padding and navbar width */
-  height: calc(
-    100vh - 60px - 20px
-  ); /* Adjust height to fit the remaining viewport space */
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  width: calc(100% - 220px);
+  height: calc(100vh - 60px - 20px);
+  overflow-y: auto;
 }
 
 .table-container table {

@@ -9,7 +9,6 @@ const TableTest = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Function to fetch initial data (GET request)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,27 +24,6 @@ const TableTest = () => {
     fetchData();
   }, []);
 
-  // // Function to handle the POST request from Postman or simulated request
-  // const handlePostRequest = async () => {
-  //   const postData = {
-  //     eventId: 12345,
-  //     sensorId: "sensor_001",
-  //     timestamp: "2024-06-26T12:34:56",
-  //     eventType: "fire",
-  //     eventData: "fwtiaaaaaaaaa",
-  //   };
-
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8080/event",
-  //       postData
-  //     ); // Replace with your endpoint
-  //     setEvents([...events, response.data]); // Update the state with the new data
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  // };
-
   if (loading) {
     return <h2>Loading...</h2>;
   }
@@ -57,7 +35,6 @@ const TableTest = () => {
   return (
     <div className="table-container">
       <h2>Test Table</h2>
-      {/* <button onClick={handlePostRequest}>Simulate POST Request</button> */}
       <table>
         <thead>
           <tr>
