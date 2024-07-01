@@ -75,7 +75,7 @@ const Form = () => {
             required
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="timestamp">Timestamp:</label>
           <input
             type="text"
@@ -84,7 +84,7 @@ const Form = () => {
             value={formData.timestamp}
             readOnly
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="eventType">Event Type:</label>
           <input
