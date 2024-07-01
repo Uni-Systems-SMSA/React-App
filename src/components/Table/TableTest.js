@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosLocalhost } from "../../axios/axiosInstances";
 import { LOCALHOST_GET_EVENTS_URL } from "../../axios/constants";
-import axios from "axios";
 import "./Table.css";
 
 const TableTest = () => {

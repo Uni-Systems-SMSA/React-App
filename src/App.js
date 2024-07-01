@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import Table from "./components/Table/Table";
-import Map from "./components/Map/Map";
+import MapWithData from "./components/Map/MapWithData";
 import Header from "./components/Header/Header";
 import "./App.css";
 import TableTest from "./components/Table/TableTest";
@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/table" element={<Table />} />
             <Route path="/table-test" element={<TableTest />} />
-            <Route path="/map" element={<Map />} />
+            <Route path="/map" element={<MapWithData />} />
             <Route path="/form" element={<Form />} />
           </Routes>
         </div>

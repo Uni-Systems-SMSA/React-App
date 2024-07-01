@@ -1,3 +1,5 @@
+// src/components/Map/Map.js
+
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -13,21 +15,37 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const Map = () => {
+const Map = ({ data = [] }) => {
   return (
     <div className="map-container">
       <MapContainer
-        center={[39.363733, 22.949345]}
-        zoom={13}
+        center={[37.983347, 23.746964]}
+        zoom={11}
         className="leaflet-container"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker position={[39.363733, 22.949345]}>
-          <Popup>Marker</Popup>
-        </Marker>
+        {data.map((spot) => (
+          <Marker key={spot.ID} position={[spot.Lat, spot.Lng]}>
+            <Popup>
+              <div>
+                <strong>{spot.ParkingSpaceName}</strong>
+                <br />
+                Zone: {spot.ZoneName}
+                <br />
+                City: {spot.CityName}
+                <br />
+                Status: {spot.Status}
+                <br />
+                Battery: {spot.BatteryStatus}
+                <br />
+                Last Report: {spot.LastReport}
+              </div>
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   );
