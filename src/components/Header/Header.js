@@ -1,4 +1,4 @@
-// Header.js
+// src/components/Header/Header.js
 
 import React from "react";
 import { Link } from "react-router-dom";
@@ -11,7 +11,6 @@ const Header = () => {
       <div className="header-container">
         <div className="header-left">
           <div className="logo">
-            {/* <h1>App Logo</h1> */}
             <Link to="/" className="logo-link">
               <img src={logo_unisystems} alt="App Logo" />
             </Link>
