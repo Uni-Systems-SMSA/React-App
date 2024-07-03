@@ -11,6 +11,7 @@ import Form from "./components/Form/Form";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+import CicicomDashboard from "./components/Dashboard/CicicomDashboard";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/cicicom/dashboard" element={<CicicomDashboard />} />
             <Route path="/cicicom/table" element={<Table />} />
             <Route path="/internal/table" element={<TableInternal />} />
             <Route path="/cicicom/map" element={<MapWithData />} />

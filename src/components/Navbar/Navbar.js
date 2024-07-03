@@ -18,6 +18,9 @@ const Navbar = () => {
           <h2>Cicicom</h2>
           <ul>
             <li>
+              <Link to={ROUTES.CICICOM.DASHBOARD}>Dashboard</Link>
+            </li>
+            <li>
               <Link to={ROUTES.CICICOM.TABLE}>Table</Link>
             </li>
             <li>
@@ -28,6 +31,9 @@ const Navbar = () => {
         <li>
           <h2>Internal</h2>
           <ul>
+            <li>
+              <Link to={ROUTES.INTERNAL.DASHBOARD}>Dashboard</Link>
+            </li>
             <li>
               <Link to={ROUTES.INTERNAL.TABLE}>Table</Link>
             </li>
