@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosLocalhost } from "../../axios/axiosInstances";
 import "./Form.css";
+import { LOCALHOST_POST_EVENT_URL } from "../../axios/constants";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,6 @@ const Form = () => {
 
   function getCurrentTimestamp() {
     const now = new Date();
-    // return now.toISOString().slice(0, 19).replace("T", " ");
     return now.toISOString();
   }
 
@@ -27,10 +27,12 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:8080/event/";
 
     try {
-      const response = await axios.post(url, formData);
+      const response = await axiosLocalhost.post(
+        LOCALHOST_POST_EVENT_URL,
+        formData
+      );
       console.log("POST request successful:", response.data);
 
       setFormData({
@@ -49,17 +51,6 @@ const Form = () => {
     <div className="form-container">
       <h2>Submit Event Data</h2>
       <form onSubmit={handleSubmit}>
-        {/* <div className="form-group">
-          <label htmlFor="eventId">Event ID:</label>
-          <input
-            type="text"
-            id="eventId"
-            name="eventId"
-            value={formData.eventId}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
         <div className="form-group">
           <label htmlFor="sensorId">Sensor ID:</label>
           <input
@@ -69,16 +60,6 @@ const Form = () => {
             value={formData.sensorId}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="timestamp">Timestamp:</label>
-          <input
-            type="text"
-            id="timestamp"
-            name="timestamp"
-            value={formData.timestamp}
-            readOnly
           />
         </div>
         <div className="form-group">

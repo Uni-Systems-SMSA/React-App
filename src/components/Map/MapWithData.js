@@ -1,21 +1,18 @@
-// src/components/Table/Table.js
-
 import React, { useState, useEffect } from "react";
-import { axiosCicicom } from "../../axios/axiosInstances";
-import ParkingSpot from "../Parking/ParkingSpot";
+import Map from "./Map";
 import {
   CICICOM_LOGIN_URL,
   CICICOM_LOGIN_TOKEN,
-  CICICOM_OATH,
   CICICOM_PARKING_SENSORS_URL,
+  CICICOM_OATH,
 } from "../../axios/constants";
-import "./Table.css";
+import { axiosCicicom } from "../../axios/axiosInstances";
 
-const Table = () => {
+const MapWithData = () => {
   const [data, setData] = useState([]);
+  const [authToken, setAuthToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [authToken, setAuthToken] = useState("");
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -66,28 +63,7 @@ const Table = () => {
     return <h2>Error: {error.message}</h2>;
   }
 
-  return (
-    <div className="table-container">
-      <h2>Parking Dashboard</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Parking Space Name</th>
-            <th>Zone Name</th>
-            <th>City Name</th>
-            <th>Status</th>
-            <th>Battery Status</th>
-            <th>Last Report</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((spot) => (
-            <ParkingSpot key={spot.ID} spot={spot} />
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <Map data={data} />;
 };
 
-export default Table;
+export default MapWithData;
