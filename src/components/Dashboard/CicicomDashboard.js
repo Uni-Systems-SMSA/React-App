@@ -1,12 +1,14 @@
 import React from "react";
-import "./CicicomDashboard.css";
-import MapWithData from "../Map/MapWithData";
+import Navbar from "../Navbar/Navbar";
+import styles from "./CicicomDashboard.module.css"; // Import CSS module
+import Map from "../Map/MapWithData";
 import Table from "../Table/Table";
+import MapWithData from "../Map/MapWithData";
 
 const CicicomDashboard = () => {
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-content">
+    <div className={styles["dashboard-container"]}>
+      <div className={styles["dashboard-content"]}>
         <MapWithData />
         <Table />
       </div>
