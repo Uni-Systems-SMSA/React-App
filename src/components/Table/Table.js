@@ -41,6 +41,7 @@ const Table = ({ data, onToggleVisibility }) => {
           headers: {
             Authorization: `${CICICOM_OATH} ${authToken}`,
           },
+          timeout: 30000,
         });
         setLoading(false);
         onToggleVisibility(response.data.Result);
