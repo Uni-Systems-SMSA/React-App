@@ -15,7 +15,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const Map = ({ data = [] }) => {
+const Map = ({ data = [], visibleSpots = {} }) => {
   return (
     <div className="map-container">
       <MapContainer
@@ -27,25 +27,28 @@ const Map = ({ data = [] }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {data.map((spot) => (
-          <Marker key={spot.ID} position={[spot.Lat, spot.Lng]}>
-            <Popup>
-              <div>
-                <strong>{spot.ParkingSpaceName}</strong>
-                <br />
-                Zone: {spot.ZoneName}
-                <br />
-                City: {spot.CityName}
-                <br />
-                Status: {spot.Status}
-                <br />
-                Battery: {spot.BatteryStatus}
-                <br />
-                Last Report: {spot.LastReport}
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {data.map(
+          (spot) =>
+            visibleSpots[spot.ID] && (
+              <Marker key={spot.ID} position={[spot.Lat, spot.Lng]}>
+                <Popup>
+                  <div>
+                    <strong>{spot.ParkingSpaceName}</strong>
+                    <br />
+                    Zone: {spot.ZoneName}
+                    <br />
+                    City: {spot.CityName}
+                    <br />
+                    Status: {spot.Status}
+                    <br />
+                    Battery: {spot.BatteryStatus}
+                    <br />
+                    Last Report: {spot.LastReport}
+                  </div>
+                </Popup>
+              </Marker>
+            )
+        )}
       </MapContainer>
     </div>
   );

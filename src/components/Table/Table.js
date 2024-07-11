@@ -1,8 +1,5 @@
-// src/components/Table/Table.js
-
 import React, { useState, useEffect } from "react";
 import { axiosCicicom } from "../../axios/axiosInstances";
-import ParkingSpot from "../Parking/ParkingSpot";
 import {
   CICICOM_LOGIN_URL,
   CICICOM_LOGIN_TOKEN,
@@ -11,8 +8,7 @@ import {
 } from "../../axios/constants";
 import "./Table.css";
 
-const Table = () => {
-  const [data, setData] = useState([]);
+const Table = ({ data, onToggleVisibility }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [authToken, setAuthToken] = useState("");
@@ -38,25 +34,23 @@ const Table = () => {
   }, []);
 
   useEffect(() => {
-    if (authToken) {
-      const fetchData = async () => {
-        try {
-          const response = await axiosCicicom.get(CICICOM_PARKING_SENSORS_URL, {
-            headers: {
-              Authorization: `${CICICOM_OATH} ${authToken}`,
-            },
-          });
-          setData(response.data.Result);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    const fetchData = async () => {
+      if (!authToken) return;
+      try {
+        const response = await axiosCicicom.get(CICICOM_PARKING_SENSORS_URL, {
+          headers: {
+            Authorization: `${CICICOM_OATH} ${authToken}`,
+          },
+        });
+        setLoading(false);
+        onToggleVisibility(response.data.Result);
+      } catch (error) {
+        setError(error);
+      }
+    };
 
-      fetchData();
-    }
-  }, [authToken]);
+    fetchData();
+  }, [authToken, onToggleVisibility]);
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -78,11 +72,24 @@ const Table = () => {
             <th>Status</th>
             <th>Battery Status</th>
             <th>Last Report</th>
+            <th>Toggle Visibility</th>
           </tr>
         </thead>
         <tbody>
           {data.map((spot) => (
-            <ParkingSpot key={spot.ID} spot={spot} />
+            <tr key={spot.ID}>
+              <td>{spot.ParkingSpaceName}</td>
+              <td>{spot.ZoneName}</td>
+              <td>{spot.CityName}</td>
+              <td>{spot.Status}</td>
+              <td>{spot.BatteryStatus}</td>
+              <td>{spot.LastReport}</td>
+              <td>
+                <button onClick={() => onToggleVisibility(spot.ID)}>
+                  Toggle
+                </button>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>
