@@ -16,6 +16,7 @@
   display: flex; /* Nested flexbox to arrange items horizontally */
   width: 100%; /* Occupy full width */
   justify-content: space-between; /* Space between map and table */
+  overflow: hidden;
 }
 
 .dashboard-content > * {
