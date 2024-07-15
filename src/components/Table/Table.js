@@ -63,7 +63,7 @@ const Table = ({ data, onToggleVisibility }) => {
 
   return (
     <div className="table-container">
-      <h2>Parking Dashboard</h2>
+      <h2>Tables</h2>
       <table>
         <thead>
           <tr>

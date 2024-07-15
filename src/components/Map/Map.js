@@ -18,6 +18,7 @@ L.Icon.Default.mergeOptions({
 const Map = ({ data = [], visibleSpots = {} }) => {
   return (
     <div className="map-container">
+      <h2>Map</h2>
       <MapContainer
         center={[37.983347, 23.746964]}
         zoom={11}

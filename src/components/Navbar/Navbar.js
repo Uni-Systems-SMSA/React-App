@@ -20,12 +20,8 @@ const Navbar = () => {
             <li>
               <Link to={ROUTES.CICICOM.DASHBOARD}>Dashboard</Link>
             </li>
-            <li>
-              <Link to={ROUTES.CICICOM.TABLE}>Table</Link>
-            </li>
-            <li>
-              <Link to={ROUTES.CICICOM.MAP}>Map</Link>
-            </li>
+            <li>{/* <Link to={ROUTES.CICICOM.TABLE}>Table</Link> */}</li>
+            <li>{/* <Link to={ROUTES.CICICOM.MAP}>Map</Link> */}</li>
           </ul>
         </li>
         <li>
