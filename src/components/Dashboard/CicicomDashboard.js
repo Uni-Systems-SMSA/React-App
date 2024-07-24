@@ -1,6 +1,5 @@
-// src/components/CicicomDashboard/CicicomDashboard.js
-
 import React, { useState, useEffect } from "react";
+import Navbar from "../Navbar/Navbar";
 import styles from "./CicicomDashboard.module.css";
 import MapWithData from "../Map/MapWithData";
 import Table from "../Table/Table";
@@ -14,53 +13,70 @@ import {
 
 const CicicomDashboard = () => {
   const [data, setData] = useState([]);
-  const [visibleSpots, setVisibleSpots] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [authToken, setAuthToken] = useState("");
 
   useEffect(() => {
-    const fetchTokenAndData = async () => {
+    const fetchToken = async () => {
       try {
         const response = await axiosCicicom.post(
           CICICOM_LOGIN_URL,
           CICICOM_LOGIN_TOKEN
         );
         if (response.data.Success) {
-          const authToken = response.data.Result.TokenValue;
-          const dataResponse = await axiosCicicom.get(
-            CICICOM_PARKING_SENSORS_URL,
-            {
-              headers: {
-                Authorization: `${CICICOM_OATH} ${authToken}`,
-              },
-            }
-          );
-          setData(dataResponse.data.Result);
-          const initialVisibility = dataResponse.data.Result.reduce(
-            (acc, spot) => ({ ...acc, [spot.ID]: true }),
-            {}
-          );
-          setVisibleSpots(initialVisibility);
+          setAuthToken(response.data.Result.TokenValue);
         } else {
-          console.error("Failed to acquire token");
+          setError("Failed to acquire token");
         }
       } catch (error) {
-        console.error(error);
+        setError(error);
       }
     };
 
-    fetchTokenAndData();
+    fetchToken();
   }, []);
 
-  const handleToggleVisibility = (id) => {
-    setVisibleSpots((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!authToken) return;
+      try {
+        const response = await axiosCicicom.get(CICICOM_PARKING_SENSORS_URL, {
+          headers: {
+            Authorization: `${CICICOM_OATH} ${authToken}`,
+          },
+        });
+        setData(response.data.Result);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchData();
+  }, [authToken]);
+
+  const handleToggleVisibility = (spotId) => {
+    // Example logic to toggle visibility
+    const updatedData = data.map((spot) =>
+      spot.ID === spotId ? { ...spot, visible: !spot.visible } : spot
+    );
+    setData(updatedData);
   };
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>Error: {error.message}</h2>;
+  }
 
   return (
     <div className={styles["dashboard-container"]}>
+      <Navbar />
       <div className={styles["dashboard-content"]}>
-        <MapWithData data={data} visibleSpots={visibleSpots} />
+        <MapWithData data={data} onToggleVisibility={handleToggleVisibility} />
         <Table data={data} onToggleVisibility={handleToggleVisibility} />
       </div>
     </div>

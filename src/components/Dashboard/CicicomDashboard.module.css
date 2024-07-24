@@ -1,24 +1,24 @@
 /* src/components/CicicomDashboard/CicicomDashboard.module.css */
 
 .dashboard-container {
-  margin-top: 60px; /* Adjust as needed */
-  margin-left: 100px; /* Adjust as needed */
+  margin-top: 60px;
+  margin-left: 100px;
   padding: 20px;
-  width: calc(100% - 220px); /* Adjust width based on navbar width */
-  height: calc(100vh - 60px - 20px); /* Adjust height based on header height */
-  overflow-y: auto; /* Add scroll if content exceeds height */
-  display: flex; /* Use flexbox to arrange components */
-  flex-direction: column; /* Stack items vertically */
-  align-items: flex-start; /* Align items to the start (top) */
+  width: calc(100% - 220px);
+  height: calc(100vh - 60px - 20px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .dashboard-content {
-  display: flex; /* Nested flexbox to arrange items horizontally */
-  width: 100%; /* Occupy full width */
-  justify-content: space-between; /* Space between map and table */
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   overflow: hidden;
 }
 
 .dashboard-content > * {
-  flex: 1; /* Equal width for both map and table */
+  flex: 1;
 }
