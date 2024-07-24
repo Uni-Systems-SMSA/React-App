@@ -33,6 +33,7 @@
 
 .navbar ul li a {
   color: #fff;
+  text-decoration: none; /* Remove underline */
 }
 
 .navbar h2 a {

@@ -1,3 +1,5 @@
+// src/components/Map/MapWithData.js
+
 import React, { useState, useEffect } from "react";
 import Map from "./Map";
 import {
@@ -8,7 +10,7 @@ import {
 } from "../../axios/constants";
 import { axiosCicicom } from "../../axios/axiosInstances";
 
-const MapWithData = () => {
+const MapWithData = ({ visibleSpots }) => {
   const [data, setData] = useState([]);
   const [authToken, setAuthToken] = useState("");
   const [loading, setLoading] = useState(true);
@@ -63,7 +65,7 @@ const MapWithData = () => {
     return <h2>Error: {error.message}</h2>;
   }
 
-  return <Map data={data} />;
+  return <Map data={data} visibleSpots={visibleSpots} />;
 };
 
 export default MapWithData;

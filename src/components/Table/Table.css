@@ -5,13 +5,15 @@
   margin-left: 100px;
   padding: 20px;
   width: calc(100% - 220px);
-  height: calc(100vh - 60px - 20px);
-  overflow-y: auto;
+  /* height: calc(100vh - 60px - 20px); */
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .table-container table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 800px;
 }
 
 .table-container th,

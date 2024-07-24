@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import Navbar from "../Navbar/Navbar";
+import styles from "./CicicomDashboard.module.css";
+import MapWithData from "../Map/MapWithData";
+import Table from "../Table/Table";
 import { axiosCicicom } from "../../axios/axiosInstances";
 import {
   CICICOM_LOGIN_URL,
@@ -6,9 +10,9 @@ import {
   CICICOM_OATH,
   CICICOM_PARKING_SENSORS_URL,
 } from "../../axios/constants";
-import "./Table.css";
 
-const Table = ({ data, onToggleVisibility }) => {
+const CicicomDashboard = () => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [authToken, setAuthToken] = useState("");
@@ -41,17 +45,24 @@ const Table = ({ data, onToggleVisibility }) => {
           headers: {
             Authorization: `${CICICOM_OATH} ${authToken}`,
           },
-          timeout: 30000,
         });
+        setData(response.data.Result);
         setLoading(false);
-        onToggleVisibility(response.data.Result);
       } catch (error) {
         setError(error);
       }
     };
 
     fetchData();
-  }, [authToken, onToggleVisibility]);
+  }, [authToken]);
+
+  const handleToggleVisibility = (spotId) => {
+    // Example logic to toggle visibility
+    const updatedData = data.map((spot) =>
+      spot.ID === spotId ? { ...spot, visible: !spot.visible } : spot
+    );
+    setData(updatedData);
+  };
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -62,40 +73,14 @@ const Table = ({ data, onToggleVisibility }) => {
   }
 
   return (
-    <div className="table-container">
-      <h2>Tables</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Parking Space Name</th>
-            <th>Zone Name</th>
-            <th>City Name</th>
-            <th>Status</th>
-            <th>Battery Status</th>
-            <th>Last Report</th>
-            <th>Toggle Visibility</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((spot) => (
-            <tr key={spot.ID}>
-              <td>{spot.ParkingSpaceName}</td>
-              <td>{spot.ZoneName}</td>
-              <td>{spot.CityName}</td>
-              <td>{spot.Status}</td>
-              <td>{spot.BatteryStatus}</td>
-              <td>{spot.LastReport}</td>
-              <td>
-                <button onClick={() => onToggleVisibility(spot.ID)}>
-                  Toggle
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className={styles["dashboard-container"]}>
+      <Navbar />
+      <div className={styles["dashboard-content"]}>
+        <MapWithData data={data} onToggleVisibility={handleToggleVisibility} />
+        <Table data={data} onToggleVisibility={handleToggleVisibility} />
+      </div>
     </div>
   );
 };
 
-export default Table;
+export default CicicomDashboard;
